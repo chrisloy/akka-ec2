@@ -20,6 +20,6 @@ libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.0.6" % "runtime"
 )
 
-jarName in assembly := s"akka-ec2.jar"
+jarName in assembly := "akka-ec2.jar"
 
 mainClass in assembly := Some("net.chrisloy.akka.Main")

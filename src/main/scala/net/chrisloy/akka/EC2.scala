@@ -10,11 +10,11 @@ import com.amazonaws.services.autoscaling.AmazonAutoScalingClient
 
 class EC2(scaling: AmazonAutoScalingClient, ec2: AmazonEC2Client) {
 
-  def ips: List[String] = groupInstanceIds(groupName(instanceId)) map instanceFromId collect {
+  def siblingIps: List[String] = groupInstanceIds(groupName(instanceId)) map instanceFromId collect {
     case instance if isRunning(instance) => instance.getPrivateIpAddress
   }
 
-  def ip = instanceFromId(instanceId).getPrivateIpAddress
+  def currentIp = instanceFromId(instanceId).getPrivateIpAddress
 
   val isRunning: Instance => Boolean = _.getState.getName == InstanceStateName.Running.toString
 

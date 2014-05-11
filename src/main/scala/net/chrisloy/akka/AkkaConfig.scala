@@ -25,7 +25,7 @@ object AkkaConfig {
       ("localhost", "localhost" :: Nil, sys.props("akka.port"))
     } else {
       println("Using EC2 autoscaling configuration")
-      (ec2.ip, ec2.ips, "2551")
+      (ec2.currentIp, ec2.siblingIps, "2551")
     }
 
   val seeds = siblings map (ip => s"akka.tcp://akka-ec2@$ip:2551")

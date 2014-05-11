@@ -6,8 +6,6 @@ import akka.actor.{RootActorPath, Actor}
 
 class BroadcastActor extends Actor {
 
-  case class Message(target: String, content: String)
-
   private val cluster = Cluster(context.system)
   private var members = Set.empty[Member]
 
@@ -24,10 +22,10 @@ class BroadcastActor extends Actor {
   def receive = {
 
     case message: String =>
-      println(message)
+      println(s"Message from [${sender().path.toString}] : [$message]")
 
-    case Message(target, content) =>
-      members foreach (pathOf(_, target) ! content)
+    case Message(content) =>
+      members foreach (pathOf(_) ! content)
 
     case MemberUp(member) =>
       members += member
@@ -38,7 +36,7 @@ class BroadcastActor extends Actor {
     case _: MemberEvent => // ignore
   }
 
-  private def pathOf(member: Member, targetActor: String) = {
-    context.actorSelection(RootActorPath(member.address) / "user" / targetActor )
+  private def pathOf(member: Member) = {
+    context.actorSelection(RootActorPath(member.address) / "user" / self.path.name )
   }
 }
