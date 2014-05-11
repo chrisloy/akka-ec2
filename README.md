@@ -1,7 +1,7 @@
 Akka EC2
 ========
 
-A sample application which demonstrates how to runan auto-scaling cluster
+A sample application which demonstrates how to run an auto-scaling cluster
 in Amazon EC2, including code for discovery of sibling nodes at startup time.
 
 Build
