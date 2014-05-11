@@ -10,7 +10,7 @@ import com.amazonaws.services.autoscaling.AmazonAutoScalingClient
 
 class EC2(scaling: AmazonAutoScalingClient, ec2: AmazonEC2Client) {
 
-  def ips = groupInstanceIds(groupName(instanceId)) map instanceFromId collect {
+  def ips: List[String] = groupInstanceIds(groupName(instanceId)) map instanceFromId collect {
     case instance if isRunning(instance) => instance.getPrivateIpAddress
   }
 
