@@ -16,7 +16,7 @@ resolvers += Classpaths.typesafeReleases
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % "2.3.2",
   "com.typesafe.akka" %% "akka-cluster" % "2.3.2",
-  "com.amazonaws" % "aws-java-sdk" % "1.7.8",
+  "com.amazonaws" % "aws-java-sdk" % "1.10.17",
   "ch.qos.logback" % "logback-classic" % "1.0.6" % "runtime"
 )
 
