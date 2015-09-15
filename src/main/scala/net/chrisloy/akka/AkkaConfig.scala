@@ -11,7 +11,7 @@ object AkkaConfig {
 
   private lazy val ec2 = {
     val credentials = new InstanceProfileCredentialsProvider
-    val region = Region.getRegion(Regions.EU_WEST_1)
+    val region = Regions.getCurrentRegion()
     val scalingClient = new AmazonAutoScalingClient(credentials) { setRegion(region) }
     val ec2Client = new AmazonEC2Client(credentials) { setRegion(region) }
     new EC2(scalingClient, ec2Client)
